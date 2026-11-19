@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RutaAsiática - Viajes por Asia</title>
+  <style>
+    :root {
+      --primary: #c0392b;
+      --primary-dark: #962d22;
+      --accent: #f39c12;
+      --bg-light: #f8f9fa;
+      --text: #2c3e50;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-light);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* PANTALLA DE LOGIN */
+    .login-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1;
+      padding: 20px;
+      min-height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), 
+                  url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1600') center/cover no-repeat;
+    }
+
+    .login-card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .login-card h2 {
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .login-card p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .form-group input:focus {
+      border-color: var(--primary);
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-login:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .demo-info {
+      margin-top: 15px;
+      background: #eef9ff;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      color: #006699;
+    }
+
+    /* PANTALLA PRINCIPAL (OCULTA AL INICIO) */
+    .app-wrapper {
+      display: none;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #1a252f;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 20px;
+      color: var(--accent);
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 14px;
+    }
+
+    .btn-logout {
+      background: transparent;
+      border: 1px solid #fff;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .btn-logout:hover {
+      background: white;
+      color: #1a252f;
+    }
+
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                  url('https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=1600') center/cover;
+      color: white;
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .hero h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .search-box {
+      max-width: 500px;
+      margin: 20px auto 0;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px;
+      flex-grow: 1;
+    }
+
+    .section-title {
+      font-size: 22px;
+      margin-bottom: 20px;
+      border-left: 4px solid var(--primary);
+      padding-left: 10px;
+    }
+
+    .grid-destinos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-title {
+      font-size: 18px;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+
+    .card-country {
+      font-size: 12px;
+      color: #777;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 15px;
+      flex-grow: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+    }
+
+    .price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+
+    .btn-reservar {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #1a252f;
+      color: #aaa;
+      text-align: center;
+      padding: 15px;
+      font-size: 12px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FORMULARIO DE INICIO DE SESIÓN -->
+  <div class="login-wrapper" id="loginScreen">
+    <div class="login-card">
+      <h2>🌏 RutaAsiática</h2>
+      <p>Ingresa para descubrir viajes a Asia</p>
+      
+      <form id="loginForm">
+        <div class="form-group">
+          <label>Usuario</label>
+          <input type="text" id="username" placeholder="Tu nombre o usuario" required />
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <input type="password" id="password" placeholder="••••••••" required />
+        </div>
+        <button type="submit" class="btn-login">Ingresar</button>
+      </form>
+
+      <div class="demo-info">
+        Escribe cualquier usuario y contraseña para entrar.
+      </div>
+    </div>
+  </div>
+
+  <!-- APLICACIÓN PRINCIPAL -->
+  <div class="app-wrapper" id="appScreen">
+    <header>
+      <h1>🌏 RutaAsiática</h1>
+      <div class="user-info">
+        <span>Hola, <b id="userDisplay">Usuario</b></span>
+        <button class="btn-logout" id="btnLogout">Cerrar Sesión</button>
+      </div>
+    </header>
+
+    <div class="hero">
+      <h2>Explora el Continente Asiático</h2>
+      <p>Encuentra tus destinos preferidos en Japón, Tailandia, Indonesia y más.</p>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Buscar por país o ciudad..." />
+      </div>
+    </div>
+
+    <main>
+      <h3 class="section-title">Destinos Disponibles</h3>
+      <div class="grid-destinos" id="destinosContainer"></div>
+    </main>
+
+    <footer>
+      © 2026 RutaAsiática | Aplicación de Viajes
+    </footer>
+  </div>
+
+  <script>
+    const destinos = [
+      {
+        nombre: "Tokio y Kioto Express",
+        pais: "Japón",
+        precio: "$1,850 USD",
+        desc: "Combina la tecnología futurista de Tokio con la historia ancestral de los templos de Kioto.",
+        imagen: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=700"
+      },
+      {
+        nombre: "Paraíso en Bali",
+        pais: "Indonesia",
+        precio: "$1,200 USD",
+        desc: "Disfruta de arrozales verdes, playas cristalinas y retiros de bienestar espiritual.",
+        imagen: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=700"
+      },
+      {
+        nombre: "Bangkok y Playas",
+        pais: "Tailandia",
+        precio: "$1,450 USD",
+        desc: "Mercados flotantes, cultura vibrante y las mejores playas de aguas turquesas.",
+        imagen: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=700"
+      },
+      {
+        nombre: "Beijing y Muralla China",
+        pais: "China",
+        precio: "$1,600 USD",
+        desc: "Un recorrido histórico por la Ciudad Prohibida y la Gran Muralla.",
+        imagen: "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=700"
+      }
+    ];
+
+    const loginScreen = document.getElementById('loginScreen');
+    const appScreen = document.getElementById('appScreen');
+    const loginForm = document.getElementById('loginForm');
+    const usernameInput = document.getElementById('username');
+    const userDisplay = document.getElementById('userDisplay');
+    const btnLogout = document.getElementById('btnLogout');
+    const destinosContainer = document.getElementById('destinosContainer');
+    const searchInput = document.getElementById('searchInput');
+
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const user = usernameInput.value.trim();
+      if (user) {
+        userDisplay.textContent = user;
+        loginScreen.style.display = 'none';
+        appScreen.style.display = 'flex';
+        renderDestinos(destinos);
+      }
+    });
+
+    btnLogout.addEventListener('click', () => {
+      appScreen.style.display = 'none';
+      loginScreen.style.display = 'flex';
+      usernameInput.value = '';
+    });
+
+    function renderDestinos(lista) {
+      destinosContainer.innerHTML = '';
+      if (lista.length === 0) {
+        destinosContainer.innerHTML = '<p>No se encontraron resultados.</p>';
+        return;
+      }
+
+      lista.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <img src="${item.imagen}" alt="${item.nombre}">
+          <div class="card-body">
+            <span class="card-country">📍 ${item.pais}</span>
+            <h4 class="card-title">${item.nombre}</h4>
+            <p class="card-desc">${item.desc}</p>
+            <div class="card-footer">
+              <span class="price">${item.precio}</span>
+              <button class="btn-reservar" onclick="alert('Reserva iniciada para ${item.nombre}')">Reservar</button>
+            </div>
+          </div>
+        `;
+        destinosContainer.appendChild(card);
+      });
+    }
+
+    searchInput.addEventListener('input', (e) => {
+      const texto = e.target.value.toLowerCase();
+      const filtrados = destinos.filter(d => 
+        d.nombre.toLowerCase().includes(texto) || 
+        d.pais.toLowerCase().includes(texto)
+      );
+      renderDestinos(filtrados);
+    });
+  </script>
+</body>
+</html>
