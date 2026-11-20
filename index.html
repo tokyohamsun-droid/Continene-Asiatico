@@ -3,32 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RutaAsiática - Viajes por Asia</title>
+  <title>RutaAsiática - Viajes Luxury por Asia</title>
   <style>
     :root {
-      --primary: #c0392b;
-      --primary-dark: #962d22;
-      --accent: #f39c12;
-      --bg-light: #f8f9fa;
-      --text: #2c3e50;
+      --bg-dark: #0f0f11;
+      --bg-card: #16161a;
+      --bg-card-hover: #1f1f24;
+      --primary-red: #e63946;
+      --primary-red-hover: #c5283d;
+      --gold: #d4af37;
+      --gold-light: #f3e5ab;
+      --text-main: #f8f9fa;
+      --text-muted: #a0a0aa;
+      --border-gold: rgba(212, 175, 55, 0.3);
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     body {
-      background-color: var(--bg-light);
-      color: var(--text);
+      background-color: var(--bg-dark);
+      color: var(--text-main);
       display: flex;
       flex-direction: column;
       min-height: 100vh;
     }
 
-    /* PANTALLA DE LOGIN */
+    /* LOGIN SCREEN */
     .login-wrapper {
       display: flex;
       justify-content: center;
@@ -36,82 +41,95 @@
       flex-grow: 1;
       padding: 20px;
       min-height: 100vh;
-      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), 
+      background: linear-gradient(rgba(15, 15, 17, 0.85), rgba(15, 15, 17, 0.95)), 
                   url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1600') center/cover no-repeat;
     }
 
     .login-card {
-      background: white;
-      padding: 30px;
+      background: var(--bg-card);
+      padding: 40px;
       border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      border: 1px solid var(--border-gold);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
       width: 100%;
-      max-width: 400px;
+      max-width: 420px;
       text-align: center;
     }
 
     .login-card h2 {
-      color: var(--primary);
+      color: var(--gold);
+      font-size: 28px;
       margin-bottom: 8px;
+      letter-spacing: 1px;
     }
 
     .login-card p {
       font-size: 14px;
-      color: #666;
+      color: var(--text-muted);
       margin-bottom: 24px;
     }
 
     .form-group {
-      margin-bottom: 16px;
+      margin-bottom: 20px;
       text-align: left;
     }
 
     .form-group label {
       display: block;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: bold;
+      color: var(--gold-light);
       margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
-    .form-group input {
+    .form-group input, .form-group select {
       width: 100%;
-      padding: 12px;
-      border: 1px solid #ccc;
+      padding: 12px 14px;
+      background: #09090b;
+      border: 1px solid #333;
       border-radius: 6px;
+      color: var(--text-main);
       font-size: 14px;
       outline: none;
+      transition: border-color 0.3s;
     }
 
-    .form-group input:focus {
-      border-color: var(--primary);
+    .form-group input:focus, .form-group select:focus {
+      border-color: var(--gold);
     }
 
     .btn-login {
       width: 100%;
-      padding: 12px;
-      background-color: var(--primary);
+      padding: 14px;
+      background: var(--primary-red);
       color: white;
       border: none;
       border-radius: 6px;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: bold;
       cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: background 0.3s;
     }
 
     .btn-login:hover {
-      background-color: var(--primary-dark);
+      background-color: var(--primary-red-hover);
     }
 
     .demo-info {
-      margin-top: 15px;
-      background: #eef9ff;
+      margin-top: 20px;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px dashed var(--gold);
       padding: 10px;
       border-radius: 6px;
       font-size: 12px;
-      color: #006699;
+      color: var(--gold-light);
     }
 
-    /* PANTALLA PRINCIPAL (OCULTA AL INICIO) */
+    /* MAIN APP */
     .app-wrapper {
       display: none;
       flex-direction: column;
@@ -119,17 +137,50 @@
     }
 
     header {
-      background: #1a252f;
-      color: white;
-      padding: 15px 20px;
+      background: #09090b;
+      border-bottom: 1px solid var(--border-gold);
+      padding: 15px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      flex-wrap: wrap;
+      gap: 15px;
     }
 
     header h1 {
-      font-size: 20px;
-      color: var(--accent);
+      font-size: 22px;
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .currency-selector {
+      background: #16161a;
+      border: 1px solid var(--border-gold);
+      color: var(--gold-light);
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .fav-counter {
+      color: var(--gold);
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .user-info {
@@ -141,190 +192,504 @@
 
     .btn-logout {
       background: transparent;
-      border: 1px solid #fff;
-      color: white;
-      padding: 6px 12px;
+      border: 1px solid var(--primary-red);
+      color: var(--primary-red);
+      padding: 6px 14px;
       border-radius: 4px;
       cursor: pointer;
+      transition: all 0.3s;
     }
 
     .btn-logout:hover {
-      background: white;
-      color: #1a252f;
+      background: var(--primary-red);
+      color: white;
     }
 
     .hero {
-      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+      background: linear-gradient(rgba(15, 15, 17, 0.75), rgba(15, 15, 17, 0.9)), 
                   url('https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=1600') center/cover;
       color: white;
       text-align: center;
       padding: 50px 20px;
+      border-bottom: 1px solid #222;
     }
 
     .hero h2 {
-      font-size: 28px;
+      font-size: 32px;
       margin-bottom: 10px;
+      color: var(--gold-light);
+    }
+
+    /* FILTERS */
+    .filter-panel {
+      max-width: 900px;
+      margin: 25px auto 0;
+      background: rgba(22, 22, 26, 0.85);
+      border: 1px solid var(--border-gold);
+      border-radius: 10px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .search-box {
-      max-width: 500px;
-      margin: 20px auto 0;
+      flex: 1 1 280px;
     }
 
     .search-box input {
       width: 100%;
-      padding: 12px;
+      padding: 10px 14px;
       border-radius: 6px;
-      border: none;
+      background: #09090b;
+      border: 1px solid #333;
+      color: white;
       outline: none;
     }
 
+    .search-box input:focus {
+      border-color: var(--gold);
+    }
+
+    .budget-filter {
+      flex: 1 1 280px;
+      text-align: left;
+    }
+
+    .budget-filter label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--gold-light);
+      margin-bottom: 6px;
+    }
+
+    .budget-filter input[type="range"] {
+      width: 100%;
+      accent-color: var(--gold);
+    }
+
+    .category-tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .tag-btn {
+      background: #09090b;
+      border: 1px solid #333;
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .tag-btn.active, .tag-btn:hover {
+      background: var(--gold);
+      color: #0f0f11;
+      border-color: var(--gold);
+      font-weight: bold;
+    }
+
     main {
-      max-width: 1100px;
-      margin: 30px auto;
+      max-width: 1200px;
+      margin: 40px auto;
       padding: 0 20px;
       flex-grow: 1;
     }
 
     .section-title {
-      font-size: 22px;
-      margin-bottom: 20px;
-      border-left: 4px solid var(--primary);
-      padding-left: 10px;
+      font-size: 24px;
+      margin-bottom: 25px;
+      border-left: 4px solid var(--primary-red);
+      padding-left: 12px;
+      color: var(--gold);
     }
 
     .grid-destinos {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
     }
 
     .card {
-      background: white;
-      border-radius: 10px;
+      background: var(--bg-card);
+      border: 1px solid #282830;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.5);
       display: flex;
       flex-direction: column;
+      position: relative;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: var(--border-gold);
+      background: var(--bg-card-hover);
     }
 
     .card img {
       width: 100%;
-      height: 180px;
+      height: 200px;
       object-fit: cover;
     }
 
+    .fav-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(15, 15, 17, 0.7);
+      border: 1px solid var(--border-gold);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      font-size: 16px;
+      transition: transform 0.2s;
+    }
+
+    .fav-btn:hover {
+      transform: scale(1.1);
+    }
+
     .card-body {
-      padding: 15px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
     }
 
-    .card-title {
-      font-size: 18px;
-      color: var(--primary);
-      margin-bottom: 5px;
+    .card-country {
+      font-size: 11px;
+      color: var(--gold);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: bold;
     }
 
-    .card-country {
-      font-size: 12px;
-      color: #777;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      font-weight: bold;
+    .card-title {
+      font-size: 20px;
+      color: var(--text-main);
+      margin-bottom: 8px;
     }
 
     .card-desc {
       font-size: 13px;
-      color: #555;
+      color: var(--text-muted);
       margin-bottom: 15px;
+      line-height: 1.5;
+    }
+
+    .attractions-title {
+      font-size: 12px;
+      color: var(--gold-light);
+      font-weight: bold;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .attractions-list {
+      list-style: none;
+      margin-bottom: 20px;
       flex-grow: 1;
+    }
+
+    .attractions-list li {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .attractions-list li::before {
+      content: "✦";
+      color: var(--primary-red);
+      font-size: 10px;
     }
 
     .card-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-top: 1px solid #eee;
-      padding-top: 10px;
+      border-top: 1px solid #282830;
+      padding-top: 15px;
+      gap: 10px;
+    }
+
+    .price-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .price-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
     }
 
     .price {
       font-size: 18px;
       font-weight: bold;
-      color: #2c3e50;
+      color: var(--gold);
+    }
+
+    .btn-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-detalles {
+      background: transparent;
+      border: 1px solid var(--border-gold);
+      color: var(--gold);
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: all 0.3s;
+    }
+
+    .btn-detalles:hover {
+      background: rgba(212, 175, 55, 0.1);
     }
 
     .btn-reservar {
-      background: var(--accent);
+      background: var(--primary-red);
       color: white;
       border: none;
-      padding: 8px 15px;
-      border-radius: 5px;
+      padding: 8px 14px;
+      border-radius: 6px;
       cursor: pointer;
       font-weight: bold;
+      font-size: 12px;
+      transition: background 0.3s;
+    }
+
+    .btn-reservar:hover {
+      background: var(--primary-red-hover);
+    }
+
+    /* MODAL SYSTEM */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold);
+      border-radius: 12px;
+      max-width: 650px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 30px;
+      position: relative;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .modal-close:hover {
+      color: var(--primary-red);
+    }
+
+    .modal-title {
+      font-size: 22px;
+      color: var(--gold);
+      margin-bottom: 5px;
+    }
+
+    .modal-subtitle {
+      font-size: 12px;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .itinerary-step {
+      margin-bottom: 15px;
+      padding-left: 15px;
+      border-left: 2px solid var(--primary-red);
+    }
+
+    .itinerary-step h5 {
+      font-size: 14px;
+      color: var(--text-main);
+    }
+
+    .itinerary-step p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .calc-box {
+      background: #09090b;
+      border: 1px dashed var(--border-gold);
+      border-radius: 8px;
+      padding: 18px;
+      margin-top: 20px;
+    }
+
+    .calc-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      font-size: 13px;
+    }
+
+    .calc-total {
+      border-top: 1px solid #333;
+      padding-top: 12px;
+      margin-top: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      color: var(--gold);
     }
 
     footer {
-      background: #1a252f;
-      color: #aaa;
+      background: #09090b;
+      border-top: 1px solid #222;
+      color: var(--text-muted);
       text-align: center;
-      padding: 15px;
-      font-size: 12px;
-      margin-top: 40px;
+      padding: 20px;
+      font-size: 13px;
+      margin-top: auto;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 650px) {
       header {
         flex-direction: column;
-        gap: 10px;
-        text-align: center;
+        align-items: flex-start;
+      }
+      .filter-row {
+        flex-direction: column;
+      }
+      .card-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .btn-actions {
+        width: 100%;
+      }
+      .btn-actions button {
+        flex: 1;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- FORMULARIO DE INICIO DE SESIÓN -->
+  <!-- LOGIN SCREEN -->
   <div class="login-wrapper" id="loginScreen">
     <div class="login-card">
-      <h2>🌏 RutaAsiática</h2>
-      <p>Ingresa para descubrir viajes a Asia</p>
+      <h2>⛩️ RutaAsiática</h2>
+      <p>Experiencias Exclusivas e Itinerarios de Lujo</p>
       
       <form id="loginForm">
         <div class="form-group">
           <label>Usuario</label>
-          <input type="text" id="username" placeholder="Tu nombre o usuario" required />
+          <input type="text" id="username" placeholder="Tu nombre" required />
         </div>
         <div class="form-group">
           <label>Contraseña</label>
           <input type="password" id="password" placeholder="••••••••" required />
         </div>
-        <button type="submit" class="btn-login">Ingresar</button>
+        <button type="submit" class="btn-login">Ingresar al Portal</button>
       </form>
 
       <div class="demo-info">
-        Escribe cualquier usuario y contraseña para entrar.
+        Ingresa cualquier credencial para probar la demo.
       </div>
     </div>
   </div>
 
-  <!-- APLICACIÓN PRINCIPAL -->
+  <!-- MAIN APP -->
   <div class="app-wrapper" id="appScreen">
     <header>
-      <h1>🌏 RutaAsiática</h1>
-      <div class="user-info">
-        <span>Hola, <b id="userDisplay">Usuario</b></span>
-        <button class="btn-logout" id="btnLogout">Cerrar Sesión</button>
+      <h1>⛩️ RUTA ASIÁTICA</h1>
+
+      <div class="header-controls">
+        <select class="currency-selector" id="currencySelect">
+          <option value="USD">USD ($)</option>
+          <option value="MXN">MXN ($)</option>
+        </select>
+
+        <div class="fav-counter" id="favCounterBtn">
+          ❤️ Favoritos (<span id="favCount">0</span>)
+        </div>
+
+        <div class="user-info">
+          <span>Hola, <b id="userDisplay" style="color: var(--gold);">Usuario</b></span>
+          <button class="btn-logout" id="btnLogout">Salir</button>
+        </div>
       </div>
     </header>
 
     <div class="hero">
-      <h2>Explora el Continente Asiático</h2>
-      <p>Encuentra tus destinos preferidos en Japón, Tailandia, Indonesia y más.</p>
-      <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Buscar por país o ciudad..." />
+      <h2>Descubre la Magia de Oriente</h2>
+      <p>Personaliza tu experiencia, calcula tu presupuesto e itinerario a medida.</p>
+      
+      <div class="filter-panel">
+        <div class="filter-row">
+          <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Buscar por ciudad, país o atracción..." />
+          </div>
+          <div class="budget-filter">
+            <label>
+              Presupuesto Máximo (Base): 
+              <span id="budgetValue" style="color: var(--gold); font-weight: bold;">$2,500 USD</span>
+            </label>
+            <input type="range" id="budgetRange" min="1000" max="2500" step="50" value="2500" />
+          </div>
+        </div>
+
+        <div class="category-tags" id="categoryContainer">
+          <button class="tag-btn active" data-cat="all">Todos</button>
+          <button class="tag-btn" data-cat="cultura">Cultura & Templos</button>
+          <button class="tag-btn" data-cat="playas">Playas & Naturaleza</button>
+          <button class="tag-btn" data-cat="modernidad">Ciudad & Modernidad</button>
+          <button class="tag-btn" data-cat="favs">Mis Favoritos ❤️</button>
+        </div>
       </div>
     </div>
 
@@ -334,42 +699,146 @@
     </main>
 
     <footer>
-      © 2026 RutaAsiática | Aplicación de Viajes
+      © 2026 RutaAsiática | Experiencias de Viaje de Lujo
     </footer>
   </div>
 
+  <!-- MODAL DETAILS & ITINERARY -->
+  <div class="modal-overlay" id="detailsModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('detailsModal')">&times;</button>
+      <h3 class="modal-title" id="mTitle">Nombre Destino</h3>
+      <div class="modal-subtitle" id="mCountry">País</div>
+      <p id="mDesc" style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;"></p>
+
+      <h4 style="color: var(--gold-light); font-size: 14px; margin-bottom: 12px; text-transform: uppercase;">📅 Itinerario Sugerido</h4>
+      <div id="mItinerary"></div>
+
+      <div class="calc-box">
+        <h4 style="color: var(--gold); font-size: 14px; margin-bottom: 15px; text-transform: uppercase;">🧮 Calculadora de Presupuesto Personalizada</h4>
+        
+        <div class="calc-row">
+          <label>Viajeros:</label>
+          <select id="calcPersons" style="width: auto; padding: 4px 8px;">
+            <option value="1">1 Persona</option>
+            <option value="2" selected>2 Personas</option>
+            <option value="3">3 Personas</option>
+            <option value="4">4 Personas</option>
+          </select>
+        </div>
+
+        <div class="calc-row">
+          <label>Noches de Estancia:</label>
+          <select id="calcNights" style="width: auto; padding: 4px 8px;">
+            <option value="7">7 Noches</option>
+            <option value="10" selected>10 Noches</option>
+            <option value="14">14 Noches</option>
+          </select>
+        </div>
+
+        <div class="calc-row">
+          <label>Categoría de Hospedaje:</label>
+          <select id="calcHotel" style="width: auto; padding: 4px 8px;">
+            <option value="1">Boutique Standard</option>
+            <option value="1.25" selected>Superior / 4 Estrellas</option>
+            <option value="1.6">Luxury 5 Estrellas & Spas</option>
+          </select>
+        </div>
+
+        <div class="calc-row calc-total">
+          <span>Estimado Total:</span>
+          <span id="calcTotalAmount">$0 USD</span>
+        </div>
+      </div>
+
+      <div style="margin-top: 25px; text-align: right;">
+        <button class="btn-reservar" style="padding: 12px 24px; font-size: 14px;" onclick="iniciarReserva()">Solicitar Cotización Oficial</button>
+      </div>
+    </div>
+  </div>
+
   <script>
+    const TASA_CAMBIO_MXN = 20.0; // 1 USD = 20 MXN
+    let monedaActual = 'USD';
+    let categoriaActiva = 'all';
+    let destinoSeleccionado = null;
+    let favoritos = JSON.parse(localStorage.getItem('rutaAsiatica_favs')) || [];
+
     const destinos = [
       {
+        id: "tokio-express",
         nombre: "Tokio y Kioto Express",
         pais: "Japón",
-        precio: "$1,850 USD",
-        desc: "Combina la tecnología futurista de Tokio con la historia ancestral de los templos de Kioto.",
-        imagen: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=700"
+        precioBase: 1850,
+        categoria: "modernidad",
+        desc: "Combina la tecnología futurista de Tokio con la serenidad de los templos milenarios de Kioto.",
+        lugares: ["Templo Senso-ji", "Monte Fuji", "Santuario Fushimi Inari", "Distrito de Shibuya"],
+        imagen: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=700",
+        itinerario: [
+          { dia: "Días 1-3", titulo: "Tokio Moderno", desc: "Llegada, recorrido por Akihabara, cruce de Shibuya y vista panorámica desde Skytree." },
+          { dia: "Días 4-6", titulo: "Kioto Histórico", desc: "Tren bala a Kioto. Visita a Fushimi Inari, bosque de bambú de Arashiyama y ceremonia de té." },
+          { dia: "Día 7", titulo: "Regreso", desc: "Tiempo libre para compras de recuerdos y traslado al aeropuerto de Narita." }
+        ]
       },
       {
+        id: "bali-paraiso",
         nombre: "Paraíso en Bali",
         pais: "Indonesia",
-        precio: "$1,200 USD",
-        desc: "Disfruta de arrozales verdes, playas cristalinas y retiros de bienestar espiritual.",
-        imagen: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=700"
+        precioBase: 1200,
+        categoria: "playas",
+        desc: "Disfruta de arrozales verdes en Ubud, templos costeros y exclusivos spas de bienestar.",
+        lugares: ["Templo Uluwatu", "Bosque de los Monos de Ubud", "Terrazas de Tegallalang", "Nusa Penida"],
+        imagen: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=700",
+        itinerario: [
+          { dia: "Días 1-4", titulo: "Ubud Espiritual", desc: "Retiro de yoga, visitas a cascadas secretas y paseo por terrazas de arroz." },
+          { dia: "Días 5-7", titulo: "Playas de Uluwatu & Nusa Penida", desc: "Tour en lancha rápida a Nusa Penida y atardeceres frente al mar con danza Kecak." }
+        ]
       },
       {
-        nombre: "Bangkok y Playas",
+        id: "tailandia-islas",
+        nombre: "Bangkok y Islas del Sur",
         pais: "Tailandia",
-        precio: "$1,450 USD",
-        desc: "Mercados flotantes, cultura vibrante y las mejores playas de aguas turquesas.",
-        imagen: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=700"
+        precioBase: 1450,
+        categoria: "playas",
+        desc: "Mercados flotantes tradicionales, palacios dorados y las icónicas playas de Phuket y Maya Bay.",
+        lugares: ["Gran Palacio de Bangkok", "Isla Phi Phi", "Templo Wat Arun", "Mercado Nocturno"],
+        imagen: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=700",
+        itinerario: [
+          { dia: "Días 1-3", titulo: "Bangkok Cultural", desc: "Navegación por el río Chao Phraya, Gran Palacio y gastronomía callejera Michelin." },
+          { dia: "Días 4-7", titulo: "Phuket y Phi Phi Islands", desc: "Crucero en yate por el archipiélago Phi Phi y relajación en balnearios tropicales." }
+        ]
       },
       {
-        nombre: "Beijing y Muralla China",
+        id: "beijing-imperial",
+        nombre: "Beijing Imperial y Muralla",
         pais: "China",
-        precio: "$1,600 USD",
-        desc: "Un recorrido histórico por la Ciudad Prohibida y la Gran Muralla.",
-        imagen: "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=700"
+        precioBase: 1600,
+        categoria: "cultura",
+        desc: "Un recorrido histórico por los secretos de la Dinastía Ming y la Gran Muralla China.",
+        lugares: ["La Gran Muralla (Mutianyu)", "Ciudad Prohibida", "Palacio de Verano", "Templo del Cielo"],
+        imagen: "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=700",
+        itinerario: [
+          { dia: "Días 1-3", titulo: "Corazón de Beijing", desc: "Caminata por la Plaza Tiananmen, Ciudad Prohibida y cena típica con Pato Laqueado." },
+          { dia: "Días 4-7", titulo: "Gran Muralla y Tradición", desc: "Teleférico en Mutianyu, recorrido por los Hutongs antiguos y Palacio de Verano." }
+        ]
+      },
+      {
+        id: "seul-jeju",
+        nombre: "Seúl y Tradición en Jeju",
+        pais: "Corea del Sur",
+        precioBase: 1750,
+        categoria: "modernidad",
+        desc: "Modernidad K-Pop, gastronomía urbana y la belleza natural volcánica de la Isla de Jeju.",
+        lugares: ["Palacio Gyeongbokgung", "Torre N Seoul", "Isla de Jeju", "Aldea Hanok de Bukchon"],
+        imagen: "https://images.unsplash.com/photo-1538485399081-7191377e8241?w=700",
+        itinerario: [
+          { dia: "Días 1-4", titulo: "Seúl Vibrante", desc: "Recorrido por vecindarios de moda (Gangnam/Hongdae) y palacios reales vestidos en Hanbok." },
+          { dia: "Días 5-7", titulo: "Isla Volcánica de Jeju", desc: "Vuelo a Jeju, senderismo en Hallasan y visitas a túneles de lava protegidos por UNESCO." }
+        ]
       }
     ];
 
+    // ELEMENTOS DOM
     const loginScreen = document.getElementById('loginScreen');
     const appScreen = document.getElementById('appScreen');
     const loginForm = document.getElementById('loginForm');
@@ -378,7 +847,157 @@
     const btnLogout = document.getElementById('btnLogout');
     const destinosContainer = document.getElementById('destinosContainer');
     const searchInput = document.getElementById('searchInput');
+    const budgetRange = document.getElementById('budgetRange');
+    const budgetValue = document.getElementById('budgetValue');
+    const currencySelect = document.getElementById('currencySelect');
+    const favCount = document.getElementById('favCount');
+    const favCounterBtn = document.getElementById('favCounterBtn');
+    const categoryContainer = document.getElementById('categoryContainer');
+    const detailsModal = document.getElementById('detailsModal');
 
+    // CÁLCULO DE FORMATEO DE MONEDA
+    function formatearPrecio(montoUSD) {
+      if (monedaActual === 'MXN') {
+        const montoMXN = montoUSD * TASA_CAMBIO_MXN;
+        return `$${montoMXN.toLocaleString('es-MX')} MXN`;
+      }
+      return `$${montoUSD.toLocaleString('en-US')} USD`;
+    }
+
+    // GESTIÓN DE FAVORITOS
+    function toggleFavorito(id, event) {
+      event.stopPropagation();
+      if (favoritos.includes(id)) {
+        favoritos = favoritos.filter(item => item !== id);
+      } else {
+        favoritos.push(id);
+      }
+      localStorage.setItem('rutaAsiatica_favs', JSON.stringify(favoritos));
+      actualizarContadorFavs();
+      aplicarFiltros();
+    }
+
+    function actualizarContadorFavs() {
+      favCount.textContent = favoritos.length;
+    }
+
+    // RENDERIZADO DE CARDS
+    function renderDestinos(lista) {
+      destinosContainer.innerHTML = '';
+      if (lista.length === 0) {
+        destinosContainer.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px;">No se encontraron destinos con las opciones seleccionadas.</p>';
+        return;
+      }
+
+      lista.forEach(item => {
+        const isFav = favoritos.includes(item.id);
+        const card = document.createElement('div');
+        card.className = 'card';
+        
+        const atraccionesHtml = item.lugares.map(lugar => `<li>${lugar}</li>`).join('');
+
+        card.innerHTML = `
+          <button class="fav-btn" onclick="toggleFavorito('${item.id}', event)" title="Guardar en favoritos">
+            ${isFav ? '❤️' : '🤍'}
+          </button>
+          <img src="${item.imagen}" alt="${item.nombre}">
+          <div class="card-body">
+            <span class="card-country">📍 ${item.pais}</span>
+            <h4 class="card-title">${item.nombre}</h4>
+            <p class="card-desc">${item.desc}</p>
+            
+            <div class="attractions-title">Imperdibles Turísticos:</div>
+            <ul class="attractions-list">
+              ${atraccionesHtml}
+            </ul>
+
+            <div class="card-footer">
+              <div class="price-container">
+                <span class="price-label">Desde</span>
+                <span class="price">${formatearPrecio(item.precioBase)}</span>
+              </div>
+              <div class="btn-actions">
+                <button class="btn-detalles" onclick="openDetails('${item.id}')">Detalles</button>
+                <button class="btn-reservar" onclick="openDetails('${item.id}')">Reservar</button>
+              </div>
+            </div>
+          </div>
+        `;
+        destinosContainer.appendChild(card);
+      });
+    }
+
+    // FILTRADO DINÁMICO
+    function aplicarFiltros() {
+      const texto = searchInput.value.toLowerCase();
+      const maxPresupuesto = parseFloat(budgetRange.value);
+
+      const filtrados = destinos.filter(d => {
+        const coincideTexto = d.nombre.toLowerCase().includes(texto) || 
+                              d.pais.toLowerCase().includes(texto) ||
+                              d.lugares.some(l => l.toLowerCase().includes(texto));
+        
+        const coincidePrecio = d.precioBase <= maxPresupuesto;
+
+        let coincideCat = true;
+        if (categoriaActiva === 'favs') {
+          coincideCat = favoritos.includes(d.id);
+        } else if (categoriaActiva !== 'all') {
+          coincideCat = d.categoria === categoriaActiva;
+        }
+
+        return coincideTexto && coincidePrecio && coincideCat;
+      });
+
+      renderDestinos(filtrados);
+    }
+
+    // MODAL E ITINERARIO
+    function openDetails(id) {
+      destinoSeleccionado = destinos.find(d => d.id === id);
+      if (!destinoSeleccionado) return;
+
+      document.getElementById('mTitle').textContent = destinoSeleccionado.nombre;
+      document.getElementById('mCountry').textContent = `📍 ${destinoSeleccionado.pais}`;
+      document.getElementById('mDesc').textContent = destinoSeleccionado.desc;
+
+      const itineraryContainer = document.getElementById('mItinerary');
+      itineraryContainer.innerHTML = destinoSeleccionado.itinerario.map(step => `
+        <div class="itinerary-step">
+          <h5>${step.dia}: ${step.titulo}</h5>
+          <p>${step.desc}</p>
+        </div>
+      `).join('');
+
+      actualizarCalculadora();
+      detailsModal.style.display = 'flex';
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = 'none';
+    }
+
+    function actualizarCalculadora() {
+      if (!destinoSeleccionado) return;
+      
+      const personas = parseInt(document.getElementById('calcPersons').value);
+      const noches = parseInt(document.getElementById('calcNights').value);
+      const factorHotel = parseFloat(document.getElementById('calcHotel').value);
+
+      // Algoritmo simple de presupuesto estimado
+      const costoBase = destinoSeleccionado.precioBase;
+      const ajusteNoches = (noches / 7);
+      const totalEstimadoUSD = (costoBase * personas * ajusteNoches * factorHotel);
+
+      document.getElementById('calcTotalAmount').textContent = formatearPrecio(Math.round(totalEstimadoUSD));
+    }
+
+    function iniciarReserva() {
+      alert(`¡Gracias por tu interés en ${destinoSeleccionado.nombre}!\nUn asesor exclusivo se pondrá en contacto para enviar la cotización detallada.`);
+      closeModal('detailsModal');
+    }
+
+    // LISTENERS DE EVENTOS
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const user = usernameInput.value.trim();
@@ -386,7 +1005,8 @@
         userDisplay.textContent = user;
         loginScreen.style.display = 'none';
         appScreen.style.display = 'flex';
-        renderDestinos(destinos);
+        actualizarContadorFavs();
+        aplicarFiltros();
       }
     });
 
@@ -396,40 +1016,40 @@
       usernameInput.value = '';
     });
 
-    function renderDestinos(lista) {
-      destinosContainer.innerHTML = '';
-      if (lista.length === 0) {
-        destinosContainer.innerHTML = '<p>No se encontraron resultados.</p>';
-        return;
-      }
-
-      lista.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-          <img src="${item.imagen}" alt="${item.nombre}">
-          <div class="card-body">
-            <span class="card-country">📍 ${item.pais}</span>
-            <h4 class="card-title">${item.nombre}</h4>
-            <p class="card-desc">${item.desc}</p>
-            <div class="card-footer">
-              <span class="price">${item.precio}</span>
-              <button class="btn-reservar" onclick="alert('Reserva iniciada para ${item.nombre}')">Reservar</button>
-            </div>
-          </div>
-        `;
-        destinosContainer.appendChild(card);
-      });
-    }
-
-    searchInput.addEventListener('input', (e) => {
-      const texto = e.target.value.toLowerCase();
-      const filtrados = destinos.filter(d => 
-        d.nombre.toLowerCase().includes(texto) || 
-        d.pais.toLowerCase().includes(texto)
-      );
-      renderDestinos(filtrados);
+    searchInput.addEventListener('input', aplicarFiltros);
+    
+    budgetRange.addEventListener('input', (e) => {
+      budgetValue.textContent = formatearPrecio(parseFloat(e.target.value));
+      aplicarFiltros();
     });
+
+    currencySelect.addEventListener('change', (e) => {
+      monedaActual = e.target.value;
+      budgetValue.textContent = formatearPrecio(parseFloat(budgetRange.value));
+      aplicarFiltros();
+      actualizarCalculadora();
+    });
+
+    categoryContainer.addEventListener('click', (e) => {
+      if (e.target.classList.contains('tag-btn')) {
+        document.querySelectorAll('.tag-btn').forEach(btn => btn.classList.remove('active'));
+        e.target.classList.add('active');
+        categoriaActiva = e.target.dataset.cat;
+        aplicarFiltros();
+      }
+    });
+
+    favCounterBtn.addEventListener('click', () => {
+      document.querySelectorAll('.tag-btn').forEach(btn => btn.classList.remove('active'));
+      const favBtn = document.querySelector('[data-cat="favs"]');
+      if (favBtn) favBtn.classList.add('active');
+      categoriaActiva = 'favs';
+      aplicarFiltros();
+    });
+
+    document.getElementById('calcPersons').addEventListener('change', actualizarCalculadora);
+    document.getElementById('calcNights').addEventListener('change', actualizarCalculadora);
+    document.getElementById('calcHotel').addEventListener('change', actualizarCalculadora);
   </script>
 </body>
 </html>
